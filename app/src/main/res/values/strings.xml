@@ -5,5 +5,5 @@
 
     <string name="drawer_closed">drawer_closed</string>
     <string name="drawer_open">drawer_open</string>
-
+    <string name="demo_verification_text">Enter 6 digit OTP number! <br></br> which is send to</string>
 </resources>

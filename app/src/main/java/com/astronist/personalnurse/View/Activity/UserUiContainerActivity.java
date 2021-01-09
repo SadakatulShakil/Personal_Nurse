@@ -90,6 +90,14 @@ public class UserUiContainerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        medicalCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserUiContainerActivity.this, MedicalAccessoriesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initNavigationViewDrawer() {

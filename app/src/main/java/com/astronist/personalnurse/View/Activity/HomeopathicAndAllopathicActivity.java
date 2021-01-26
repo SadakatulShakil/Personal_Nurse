@@ -51,7 +51,7 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
     private LinearLayout thumbNail1Lay, thumbNail2Lay;
     private ExtendedFloatingActionButton proceedBtn;
     private Uri imageUri;
-    private String clicked;
+    private String clicked, status = "unsolved";
     private StorageTask uploadTask;
     private FirebaseAuth firebaseAuth;
     private StorageReference mStorageRef;
@@ -146,8 +146,8 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
     private void uploadFullInfo(final String imageUri, final String addingDate, final String addingTime, final String clicked) {
 
         String uploadId = mDatabaseRef.push().getKey();
-        PrescriptionInfo prescriptionInfo = new PrescriptionInfo(userId, uploadId, imageUri, addingDate, addingTime,clicked);
-        mDatabaseRef.child(uploadId).setValue(prescriptionInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        PrescriptionInfo prescriptionInfo = new PrescriptionInfo(userId, uploadId, imageUri, addingDate, addingTime,clicked,status);
+        mDatabaseRef.child(userId).child(uploadId).setValue(prescriptionInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

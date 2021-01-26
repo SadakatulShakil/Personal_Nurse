@@ -89,11 +89,23 @@
                             android:layout_weight="1"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/oneDayPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$ price: "
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/red"
+                            android:textStyle="bold" />
+
                         <CheckBox
                             android:id="@+id/checkBox1"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:gravity="center"
+                            android:checked="true"
                             android:layout_gravity="center"
                             android:layout_marginRight="30dp"/>
 
@@ -102,7 +114,7 @@
 
 
                     <TextView
-                        android:id="@+id/oneDayPrice"
+                        android:id="@+id/listOfMedicine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -125,6 +137,7 @@
                             android:layout_weight="1"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
+
                         <CheckBox
                             android:id="@+id/checkBox2"
                             android:layout_width="25dp"
@@ -138,13 +151,14 @@
 
                     <TextView
                         android:id="@+id/oneWeakPrice"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:inputType="textMultiLine|textLongMessage"
-                        android:text="\n" />
+                        android:text="$ price: "
+                        android:visibility="gone"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/red"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:id="@+id/fifteenDaysDemo"
@@ -172,14 +186,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/fifteenDaysPrice"
-                        android:layout_width="match_parent"
+                        android:id="@+id/fifteenDayPrice"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:inputType="textMultiLine|textLongMessage"
-                        android:text="\n" />
+                        android:text="$ price: "
+                        android:visibility="gone"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/red"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:id="@+id/oneMonthDemo"
@@ -203,17 +218,155 @@
                             android:layout_gravity="center"
                             android:layout_marginRight="30dp"/>
 
-
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/oneMonthPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$ price: "
+                        android:visibility="gone"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/red"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/moreDemo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:inputType="textMultiLine|textLongMessage"
-                        android:text="\n" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For More.. "
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/purple_500"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="30dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/customLay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/customDayLay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/customDayEt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="how many days?"
+                                    android:padding="5dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/border_round"/>
+
+                                <TextView
+                                    android:id="@+id/customDayPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$ price: "
+                                    android:layout_margin="5dp"
+                                    android:visibility="gone"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/red"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+
+                            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                                android:id="@+id/customDayOk"
+                                android:layout_width="70dp"
+                                android:layout_height="50dp"
+                                android:backgroundTint="@color/color_primary"
+                                android:gravity="center"
+                                android:text="Ok"
+                                android:layout_margin="8dp"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/customMonthLay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/customMonthEt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="how many months?"
+                                    android:padding="5dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/border_round"/>
+
+                                <TextView
+                                    android:id="@+id/customMonthPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$ price: "
+                                    android:layout_margin="5dp"
+                                    android:visibility="gone"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/red"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                                android:id="@+id/customMonthOk"
+                                android:layout_width="70dp"
+                                android:layout_height="50dp"
+                                android:backgroundTint="@color/color_primary"
+                                android:gravity="center"
+                                android:text="Ok"
+                                android:layout_margin="8dp"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerInParent="true"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
@@ -242,43 +395,51 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/waitingLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/gifView">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:elevation="8dp"
-            android:gravity="center"
-            android:fontFamily="@font/bangla_regular"
-            android:text="Please wait"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:orientation="horizontal"
+            android:layout_below="@+id/gifView">
 
-        <TextView
-            android:id="@+id/countdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:elevation="8dp"
-            android:gravity="start"
-            android:textColor="@color/red"
-            android:fontFamily="@font/bangla_regular"
-            android:text="29.00.00"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:fontFamily="@font/bangla_regular"
+                android:text="Please wait"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="8dp"
+                android:gravity="start"
+                android:textColor="@color/red"
+                android:fontFamily="@font/bangla_regular"
+                android:text="29.00.00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gifView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:src="@drawable/waiting"
-        android:layout_below="@+id/toolbar" />
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/waiting" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

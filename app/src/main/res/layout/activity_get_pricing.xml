@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Activity.GetPricingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary"
+        android:elevation="8dp"
+        app:titleTextColor="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bangla_regular"
+            android:gravity="center"
+            android:text="Pricing"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/holdingLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:text="Note: Please Select Your desire Medicine Plan Bellow.\nবিদ্রঃ দয়া করে আপনার ঔষধ এর সময়সূচি বাছাই করুন।" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Ash"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/demo"/>
+
+        <LinearLayout
+            android:id="@+id/mainLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_above="@+id/proceedBtn"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/productView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/oneDayDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For One day: "
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/checkBox1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="30dp"/>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/oneDayPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine|textLongMessage"
+                        android:text="\n" />
+
+                    <LinearLayout
+                        android:id="@+id/oneWeakDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For One weak: "
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="30dp"/>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/oneWeakPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine|textLongMessage"
+                        android:text="\n" />
+
+                    <LinearLayout
+                        android:id="@+id/fifteenDaysDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For 15 days: "
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/checkBox3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="30dp"/>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fifteenDaysPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine|textLongMessage"
+                        android:text="\n" />
+
+                    <LinearLayout
+                        android:id="@+id/oneMonthDemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="For One month: "
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="30dp"/>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="textMultiLine|textLongMessage"
+                        android:text="\n" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/proceedBtn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_primary"
+            android:gravity="center"
+            android:text="Proceed"
+            android:layout_margin="8dp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/gifView">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:fontFamily="@font/bangla_regular"
+            android:text="Please wait"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="8dp"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:fontFamily="@font/bangla_regular"
+            android:text="29.00.00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/waiting"
+        android:layout_below="@+id/toolbar" />
+
+</RelativeLayout>

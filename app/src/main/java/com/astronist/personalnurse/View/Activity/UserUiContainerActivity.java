@@ -32,12 +32,12 @@ public class UserUiContainerActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private CarouselView carouselView;
     private Toolbar dToolbar;
-    private ImageView imageView;
+    private ImageView offer;
     private String clicked;
     private FirebaseAuth firebaseAuth;
     public int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3,
             R.drawable.image_4};
-    private CardView homeopathicCard, allopathicCard, kidsNdMomCard, medicalCard;
+    private CardView homeopathicCard, allopathicCard, kidsNdMomCard, medicalCard, nutritionCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,20 @@ public class UserUiContainerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(UserUiContainerActivity.this, MedicalAccessoriesActivity.class);
                 startActivity(intent);
+            }
+        });
+        nutritionCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserUiContainerActivity.this, NutritionActivity.class);
+                startActivity(intent);
+            }
+        });
+        offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(UserUiContainerActivity.this, GetPricingActivity.class);
+                startActivity(intent1);
             }
         });
     }
@@ -175,5 +189,7 @@ public class UserUiContainerActivity extends AppCompatActivity {
         allopathicCard = findViewById(R.id.allopathicLayout);
         kidsNdMomCard = findViewById(R.id.kidsMomLayout);
         medicalCard = findViewById(R.id.medicalAccessLayout);
+        nutritionCard = findViewById(R.id.nutritionLayout);
+        offer = findViewById(R.id.offer);
     }
 }

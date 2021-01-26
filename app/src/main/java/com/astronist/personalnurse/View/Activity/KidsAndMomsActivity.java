@@ -42,7 +42,6 @@ public class KidsAndMomsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kids_and_moms);
         inItView();
 
-
         progressBar.setVisibility(View.VISIBLE);
 
         babyDiaperRecyclerView.setLayoutManager(new GridLayoutManager(KidsAndMomsActivity.this, 2, RecyclerView.VERTICAL, false));

@@ -13,69 +13,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="8dp"
-            android:background="@color/color_primary"
-            app:titleTextColor="@color/white">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:fontFamily="@font/bangla_regular"
-                android:textSize="30sp"/>
-
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/button_round"
-           android:layout_below="@+id/toolbar" />
-
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carouselView"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_below="@+id/toolbar"
-            android:layout_marginTop="55dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:fillColor="#FFFFFFFF"
-            app:pageColor="#00000000"
-            app:radius="4dp"
-            android:elevation="16dp"
-            android:background="@drawable/border_round"
-            app:slideInterval="3000"
-            app:strokeColor="@color/Ash"
-            app:strokeWidth="1dp">
-
-        </com.synnapps.carouselview.CarouselView>
-
         <LinearLayout
             android:id="@+id/eventsItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/carouselView"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_below="@+id/carouselView"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/homeopathicLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="16dp"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="16dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -95,18 +48,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="Homeopathic"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="হোমিওপ্যাথিক"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -117,9 +71,9 @@
                 android:id="@+id/allopathicLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="16dp"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="16dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -139,19 +93,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="Allopathic"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="এ্যলোপ্যাথিক"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -173,9 +127,9 @@
                 android:id="@+id/kidsMomLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="16dp"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="16dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -195,18 +149,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="Kids and Mom"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="কিডস এবং মম"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -217,9 +172,9 @@
                 android:id="@+id/medicalAccessLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="16dp"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="16dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -239,23 +194,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="Medical Accessories"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="মেডিকেল এক্সেসরিস"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                 </LinearLayout>
-
 
 
             </androidx.cardview.widget.CardView>
@@ -275,9 +229,9 @@
                 android:id="@+id/nutritionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="16dp"
-                android:layout_weight="1"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="16dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -297,18 +251,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="Nutrition nad Vitamins"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bangla_regular"
                         android:text="নিউট্রিশন এবং ভিটামিন্স"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bangla_regular"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -317,6 +272,58 @@
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/toolbar"
+            android:background="@drawable/button_round" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary"
+            android:elevation="8dp"
+            app:titleTextColor="@color/white">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bangla_regular"
+                android:gravity="start"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@+id/offer"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_offer" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/border_round"
+            android:elevation="16dp"
+            app:fillColor="#FFFFFFFF"
+            app:pageColor="#00000000"
+            app:radius="4dp"
+            app:slideInterval="3000"
+            app:strokeColor="@color/Ash"
+            app:strokeWidth="1dp">
+
+        </com.synnapps.carouselview.CarouselView>
+
     </RelativeLayout>
 
 
@@ -324,12 +331,12 @@
         android:id="@+id/navigationDrawer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
         android:layout_gravity="start"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
+        android:layout_marginTop="55dp"
         android:background="@drawable/drawer_round"
         app:headerLayout="@layout/header_for_navigator"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:menu="@menu/drawer" />
 
 

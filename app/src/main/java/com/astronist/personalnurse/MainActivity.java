@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void verifyOTP(String otp) {
+   /* private void verifyOTP(String otp) {
 
         PhoneAuthCredential otpCredential = PhoneAuthProvider.getCredential(verificationOTP, otp);
         firebaseAuth.signInWithCredential(otpCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -244,13 +244,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             }
         });
-    }
+    }*/
 
-    private void SendUserData(FirebaseUser otpUser) {
+    /*private void SendUserData(FirebaseUser otpUser) {
         finish();
         Intent intent = new Intent(MainActivity.this, UserUiContainerActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     private void DoOTPLogIn(String phoneNumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(

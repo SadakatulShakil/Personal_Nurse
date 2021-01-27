@@ -284,6 +284,7 @@
                                     android:layout_height="wrap_content"
                                     android:hint="how many days?"
                                     android:padding="5dp"
+                                    android:inputType="number"
                                     android:layout_gravity="center"
                                     android:background="@drawable/border_round"/>
 
@@ -334,6 +335,7 @@
                                     android:layout_height="wrap_content"
                                     android:hint="how many months?"
                                     android:padding="5dp"
+                                    android:inputType="number"
                                     android:layout_gravity="center"
                                     android:background="@drawable/border_round"/>
 

@@ -47,14 +47,14 @@ public class GetPricingActivity extends AppCompatActivity {
     Date current = null;
     private DatabaseReference prescriptionRef;
     private DatabaseReference offeredPriceRef;
-    private String currentTime, userId, mainPrice;
+    private String currentTime, userId, mainPrice, orderDayCount;
     public static final String TAG = "Offer";
     private RelativeLayout holdingLay, waitingLay;
     private FirebaseAuth firebaseAuth;
     private ProgressBar progressBar;
     private CheckBox ckBox1, ckBox2, ckBox3, ckBox4, ckBox5;
     private LinearLayout customLay, customDayLay, customMonthLay;
-    private ExtendedFloatingActionButton customDayBtn, customMonthBtn;
+    private ExtendedFloatingActionButton customDayBtn, customMonthBtn, proceedBtn;
     private EditText customDayEt, customMonthEt;
 
     @Override
@@ -111,7 +111,9 @@ public class GetPricingActivity extends AppCompatActivity {
                             waitingLay.setVisibility(View.GONE);
                             Log.d(TAG, "onOfferData: "+ offerPriceList.toString());
 
-                            checkBoxFunction(price1, price2, price3, price4);
+                            checkBoxFunction(price1, price2, price3, price4, medicine);
+                            GoForCheckOut(price1, medicine);
+
                         }else{
 
                             holdingLay.setVisibility(View.GONE);
@@ -129,7 +131,7 @@ public class GetPricingActivity extends AppCompatActivity {
 
     }
 
-    private void checkBoxFunction(String Price1, String Price2, String Price3, String Price4) {
+    private void checkBoxFunction(String Price1, String Price2, String Price3, String Price4, String medicine) {
 
         ckBox1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +148,7 @@ public class GetPricingActivity extends AppCompatActivity {
                     customDayPrice.setVisibility(View.GONE);
                     customMonthPrice.setVisibility(View.GONE);
                     mainPrice= Price1;
+                    orderDayCount = "1";
                 }
             }
         });
@@ -168,6 +171,7 @@ public class GetPricingActivity extends AppCompatActivity {
                     customDayPrice.setVisibility(View.GONE);
                     customMonthPrice.setVisibility(View.GONE);
                     mainPrice= Price2;
+                    orderDayCount = "7";
                 }else{
                     ckBox1.setChecked(true);
                 }
@@ -192,6 +196,7 @@ public class GetPricingActivity extends AppCompatActivity {
                     customDayPrice.setVisibility(View.GONE);
                     customMonthPrice.setVisibility(View.GONE);
                     mainPrice= Price3;
+                    orderDayCount = "15";
                 }else{
                     ckBox1.setChecked(true);
                 }
@@ -216,6 +221,7 @@ public class GetPricingActivity extends AppCompatActivity {
                     customDayPrice.setVisibility(View.GONE);
                     customMonthPrice.setVisibility(View.GONE);
                     mainPrice = Price4;
+                    orderDayCount = "30";
                 }else{
                     ckBox1.setChecked(true);
                 }
@@ -243,10 +249,18 @@ public class GetPricingActivity extends AppCompatActivity {
                            customDayPrice.setVisibility(View.VISIBLE);
                            customMonthLay.setVisibility(View.GONE);
                            String mDayCount = customDayEt.getText().toString().trim();
-                           int dayCount = Integer.parseInt(mDayCount);
-                           int mPrice1 = Integer.parseInt(Price1)*dayCount;
-                           mainPrice = String.valueOf(mPrice1);
-                           customDayPrice.setText(mainPrice+" taka");
+
+                           if(mDayCount.isEmpty()){
+                               customDayEt.setError("Field is required!");
+                               customDayEt.requestFocus();
+                               return;
+                           }else{
+                               int dayCount = Integer.parseInt(mDayCount);
+                               int mPrice1 = Integer.parseInt(Price1)*dayCount;
+                               mainPrice = String.valueOf(mPrice1);
+                               orderDayCount = mDayCount;
+                               customDayPrice.setText(mainPrice+" taka");
+                           }
                        }
                    });
 
@@ -257,17 +271,46 @@ public class GetPricingActivity extends AppCompatActivity {
                             customMonthLay.setVisibility(View.VISIBLE);
                             customMonthPrice.setVisibility(View.VISIBLE);
                             String mMonthCount = customMonthEt.getText().toString().trim();
-                            int monthCount = Integer.parseInt(mMonthCount);
-                            int mPrice2 = Integer.parseInt(Price1)*(monthCount*30);
-                            mainPrice = String.valueOf(mPrice2);
-                            customMonthPrice.setText(mainPrice+" taka");
+                            if(mMonthCount.isEmpty()){
+                                customMonthEt.setError("Field is required!");
+                                customMonthEt.requestFocus();
+                                return;
+                            }else{
+                                int monthCount = Integer.parseInt(mMonthCount);
+                                int monthDayCount = monthCount*30;
+                                String dayOfMonth = String.valueOf(monthDayCount);
+                                int mPrice2 = Integer.parseInt(Price1)*(monthDayCount);
+                                mainPrice = String.valueOf(mPrice2);
+                                orderDayCount = dayOfMonth;
+                                customMonthPrice.setText(mainPrice+" taka");
+                            }
+
                         }
                     });
+
+
 
                 }else{
                     ckBox1.setChecked(true);
                     customLay.setVisibility(View.GONE);
                 }
+            }
+        });
+
+    }
+
+    private void GoForCheckOut(String price1, String medicine) {
+
+        proceedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GetPricingActivity.this, ConfirmMedicineOrderActivity.class);
+                intent.putExtra("singlePrice", price1);
+                intent.putExtra("mainPrice", mainPrice);
+                intent.putExtra("dayCount", orderDayCount);
+                intent.putExtra("medicine", medicine);
+                Log.d(TAG, "onClick: " + price1+".."+mainPrice+".."+orderDayCount);
+                startActivity(intent);
             }
         });
     }
@@ -392,5 +435,7 @@ public class GetPricingActivity extends AppCompatActivity {
 
         customDayPrice = findViewById(R.id.customDayPrice);
         customMonthPrice = findViewById(R.id.customMonthPrice);
+
+        proceedBtn = findViewById(R.id.proceedBtn);
     }
 }

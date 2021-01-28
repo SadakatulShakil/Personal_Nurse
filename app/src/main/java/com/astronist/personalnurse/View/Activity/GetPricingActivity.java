@@ -47,7 +47,7 @@ public class GetPricingActivity extends AppCompatActivity {
     Date current = null;
     private DatabaseReference prescriptionRef;
     private DatabaseReference offeredPriceRef;
-    private String currentTime, userId, mainPrice, orderDayCount;
+    private String currentTime, userId, mainPrice, orderDayCount, pushId;
     public static final String TAG = "Offer";
     private RelativeLayout holdingLay, waitingLay;
     private FirebaseAuth firebaseAuth;
@@ -89,7 +89,7 @@ public class GetPricingActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot offerSnap : snapshot.getChildren()){
                     OfferPrice offerPriceList = offerSnap.getValue(OfferPrice.class);
-                    if(offerPriceList.getCustomerId().equals(userId)){
+                    if(offerPriceList.getPushId().equals(pushId)){
 
                         if(offerPriceList != null){
                             String price1 = offerPriceList.getOneDayPrice();
@@ -323,6 +323,7 @@ public class GetPricingActivity extends AppCompatActivity {
                     PrescriptionInfo prescriptionInfo = childInfo.getValue(PrescriptionInfo.class);
                     Log.d(TAG, "onDataChange: "+prescriptionInfo.toString());
                     String uploadTime = prescriptionInfo.getTime();
+                    pushId = prescriptionInfo.getPushId();
                     doCalculation(uploadTime);
                 }
             }

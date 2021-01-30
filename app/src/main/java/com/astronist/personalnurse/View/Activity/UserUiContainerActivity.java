@@ -37,7 +37,7 @@ public class UserUiContainerActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     public int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3,
             R.drawable.image_4};
-    private CardView homeopathicCard, allopathicCard, kidsNdMomCard, medicalCard, nutritionCard;
+    private CardView dailyDrugCard, allopathicCard, kidsNdMomCard, medicalCard, nutritionCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +63,10 @@ public class UserUiContainerActivity extends AppCompatActivity {
 
         ////////Card click events///////////
 
-        homeopathicCard.setOnClickListener(new View.OnClickListener() {
+        dailyDrugCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicked = "homeo";
-                Intent intent = new Intent(UserUiContainerActivity.this, HomeopathicAndAllopathicActivity.class);
-                intent.putExtra("click", clicked);
+                Intent intent = new Intent(UserUiContainerActivity.this, DailyDrugsActivity.class);
                 startActivity(intent);
             }
         });
@@ -185,7 +183,7 @@ public class UserUiContainerActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationDrawer);
         dToolbar = findViewById(R.id.toolbar);
         carouselView = findViewById(R.id.carouselView);
-        homeopathicCard = findViewById(R.id.homeopathicLayout);
+        dailyDrugCard = findViewById(R.id.dailyDrugLayout);
         allopathicCard = findViewById(R.id.allopathicLayout);
         kidsNdMomCard = findViewById(R.id.kidsMomLayout);
         medicalCard = findViewById(R.id.medicalAccessLayout);

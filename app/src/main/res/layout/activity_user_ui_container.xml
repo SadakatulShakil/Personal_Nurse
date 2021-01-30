@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/homeopathicLayout"
+                android:id="@+id/dailyDrugLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -43,13 +43,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:src="@drawable/homeopathic" />
+                        android:src="@drawable/daily_drugs" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bangla_regular"
-                        android:text="Homeopathic"
+                        android:text="Daily Drugs"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bangla_regular"
-                        android:text="হোমিওপ্যাথিক"
+                        android:text="নিত্যদিনের ঔষধ"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bangla_regular"
-                        android:text="Allopathic"
+                        android:text="Prescribe Medicine"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bangla_regular"
-                        android:text="এ্যলোপ্যাথিক"
+                        android:text="প্রেস্ক্রাইব ঔষধ"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textColor="@color/black"
                         android:textStyle="bold" />

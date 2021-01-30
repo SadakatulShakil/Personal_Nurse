@@ -212,7 +212,7 @@ public class ConfirmMedicineOrderActivity extends AppCompatActivity {
                         phoneEt.setText(addressInfo.getPhone());
                         addressLine1Et.setText(addressInfo.getAddressLine1());
                         addressLine2Et.setText(addressInfo.getGetAddressLine2());
-                        roadNoEt.setText(addressInfo.getRoadNo());
+                        roadNoEt.setText(addressInfo.getRoadNo()+" no. road");
                     }
                 }
             }

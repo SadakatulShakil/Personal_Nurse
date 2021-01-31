@@ -6,8 +6,8 @@
         android:title="Personal">
         <menu>
             <item
-                android:id="@+id/medical_news"
-                android:title="Medical News"
+                android:id="@+id/prescribe_medicine"
+                android:title="Prescribe Medicine"
                 android:icon="@drawable/ic_news"/>
 
             <item

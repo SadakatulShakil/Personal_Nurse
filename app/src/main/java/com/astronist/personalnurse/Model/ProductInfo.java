@@ -1,6 +1,10 @@
 package com.astronist.personalnurse.Model;
 
-public class ProductInfo {
+import android.widget.TextView;
+
+import java.io.Serializable;
+
+public class ProductInfo implements Serializable {
     private String title;
     private String category;
     private String subCategory;

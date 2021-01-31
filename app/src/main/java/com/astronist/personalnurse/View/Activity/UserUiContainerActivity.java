@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.astronist.personalnurse.MainActivity;
@@ -33,11 +34,12 @@ public class UserUiContainerActivity extends AppCompatActivity {
     private CarouselView carouselView;
     private Toolbar dToolbar;
     private ImageView offer;
-    private String clicked;
+    private String clicked="allo";
     private FirebaseAuth firebaseAuth;
     public int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3,
             R.drawable.image_4};
     private CardView dailyDrugCard, allopathicCard, kidsNdMomCard, medicalCard, nutritionCard;
+    private RelativeLayout notifyLay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,10 +105,17 @@ public class UserUiContainerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        offer.setOnClickListener(new View.OnClickListener() {
+       /* offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(UserUiContainerActivity.this, GetPricingActivity.class);
+                startActivity(intent1);
+            }
+        });*/
+        notifyLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(UserUiContainerActivity.this, CartListActivity.class);
                 startActivity(intent1);
             }
         });
@@ -120,11 +129,9 @@ public class UserUiContainerActivity extends AppCompatActivity {
 
                 switch ((item.getItemId())) {
 
-                    case R.id.medical_news:
-                       /* getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frameLayoutID, new SettingsFragment())
-                                .addToBackStack(null)
-                                .commit();*/
+                    case R.id.prescribe_medicine:
+                       Intent intent = new Intent(UserUiContainerActivity.this, GetPricingActivity.class);
+                        startActivity(intent);
                         Toast.makeText(UserUiContainerActivity.this, "Settings Under Construction be Patient!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.profile:
@@ -152,14 +159,14 @@ public class UserUiContainerActivity extends AppCompatActivity {
                     case R.id.about:
                        /* Intent intent3 = new Intent(context, AboutUsActivity.class);
                         startActivity(intent3);*/
-                        Toast.makeText(UserUiContainerActivity.this, "About Under Construction be Patient!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UserUiContainerActivity.this, "About Under Construction be Patient!", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.logOut:
                         firebaseAuth.signOut();
                         finish();
-                        Intent intent = new Intent(UserUiContainerActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        Intent intent1 = new Intent(UserUiContainerActivity.this, MainActivity.class);
+                        startActivity(intent1);
                         Toast.makeText(UserUiContainerActivity.this, "Successfully Log Out", Toast.LENGTH_LONG).show();
                         break;
 
@@ -188,6 +195,6 @@ public class UserUiContainerActivity extends AppCompatActivity {
         kidsNdMomCard = findViewById(R.id.kidsMomLayout);
         medicalCard = findViewById(R.id.medicalAccessLayout);
         nutritionCard = findViewById(R.id.nutritionLayout);
-        offer = findViewById(R.id.offer);
+        notifyLay = findViewById(R.id.auctionNotificationAction);
     }
 }

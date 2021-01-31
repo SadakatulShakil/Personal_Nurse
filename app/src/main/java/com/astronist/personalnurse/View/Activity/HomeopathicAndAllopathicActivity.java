@@ -46,12 +46,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
 
-    private TextView toolName;
     private ImageView previewImage, thumbNail1, thumbNail2;
     private LinearLayout thumbNail1Lay, thumbNail2Lay;
     private ExtendedFloatingActionButton proceedBtn;
     private Uri imageUri;
-    private String clicked, status = "unsolved";
+    private String clicked="allo", status = "unsolved";
     private StorageTask uploadTask;
     private FirebaseAuth firebaseAuth;
     private StorageReference mStorageRef;
@@ -72,12 +71,6 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         clicked = intent.getStringExtra("click");
-
-        if(clicked.equals("allo")){
-            toolName.setText("Allopathic");
-        }else if(clicked.equals("homeo")){
-            toolName.setText("Homeopathic");
-        }
 
         previewImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +191,6 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
 
     private void inItView() {
 
-        toolName = findViewById(R.id.toolbarName);
         previewImage = findViewById(R.id.previewImage);
         proceedBtn = findViewById(R.id.proceedBtn);
         progressBar = findViewById(R.id.progressBar);

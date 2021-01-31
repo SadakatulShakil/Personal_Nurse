@@ -1,6 +1,7 @@
 package com.astronist.personalnurse.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.astronist.personalnurse.View.Activity.DailyOrderActivity;
 import com.astronist.personalnurse.Model.ProductInfo;
 import com.astronist.personalnurse.R;
 import com.squareup.picasso.Picasso;
@@ -47,6 +49,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.viewHold
         holder.regularPrice.setText(proRegularPrice);
         holder.sellingPrice.setText(proActualPrice);
         Picasso.get().load(productInfo.getImageUrl()).into(holder.proImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DailyOrderActivity.class);
+                intent.putExtra("productInfo", productInfo);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

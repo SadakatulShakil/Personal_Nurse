@@ -72,7 +72,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setTitle("Remove Cart Item !");
                 alertDialog.setMessage("Are You Sure To Remove Your Item ?");
-                alertDialog.setIcon(R.drawable.ic_cart);
+                alertDialog.setIcon(R.drawable.ic_remove_cart);
 
                 alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override

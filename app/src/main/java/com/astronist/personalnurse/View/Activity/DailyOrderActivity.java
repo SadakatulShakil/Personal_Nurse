@@ -3,12 +3,19 @@ package com.astronist.personalnurse.View.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -41,12 +49,15 @@ public class DailyOrderActivity extends AppCompatActivity {
     private ImageView productImage;
     private ExtendedFloatingActionButton cartBtn, orderBtn;
     private ProductInfo productInfo;
-    private String userId, upTime, upDate;
+    private String userId, upTime, upDate, paymentMethod;
     private DatabaseReference addressRef, cartReference, orderReference;
     private FirebaseAuth firebaseAuth;
     private int counter = 1, checkCart = 0;
     private double totalAmount;
     public static final String TAG ="DailyOrder";
+    private ArrayList<CartList> cartListArrayList= new ArrayList<>();
+    private TextView cartItemCount;
+    private RelativeLayout notifyLay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +68,7 @@ public class DailyOrderActivity extends AppCompatActivity {
         userId = firebaseAuth.getCurrentUser().getUid();
         Intent intent = getIntent();
         productInfo = (ProductInfo) intent.getSerializableExtra("productInfo");
-
+        getCartItemCount();
         String sellPrice = String.valueOf(productInfo.getSellingPrice());
         totalAmount = productInfo.getSellingPrice();
         String regPrice = String.valueOf(productInfo.getRegularPrice());
@@ -117,16 +128,108 @@ public class DailyOrderActivity extends AppCompatActivity {
                 }
             }
         });
-
+        notifyLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(DailyOrderActivity.this, CartListActivity.class);
+                startActivity(intent1);
+            }
+        });
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToOrderSetup();
+                android.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(DailyOrderActivity.this);
+                alertDialog.setTitle("Payment Option!(মূল্য পরিশোধ)");
+                alertDialog.setMessage("How you want to payment?(আপনি কিভাবে মূল্য পরিশোধ করতে চান?)");
+                alertDialog.setIcon(R.drawable.ic_payment);
+
+                final FrameLayout frameView = new FrameLayout(DailyOrderActivity.this);
+                alertDialog.setView(frameView);
+                final AlertDialog fAlertDialog = alertDialog.create();
+                LayoutInflater inflater = fAlertDialog.getLayoutInflater();
+                View dialogLayout = inflater.inflate(R.layout.payment_dialog, frameView);
+                CheckBox ckBox1 = dialogLayout.findViewById(R.id.checkBox1);
+                CheckBox ckBox2 = dialogLayout.findViewById(R.id.checkBox2);
+                ckBox1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(ckBox1.isChecked()){
+                            paymentMethod = "ssl";
+                            ckBox2.setChecked(false);
+                        }else{
+                            paymentMethod = "";
+                        }
+                    }
+                });
+                ckBox2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(ckBox2.isChecked()){
+                            paymentMethod = "cod";
+                            ckBox1.setChecked(false);
+                        }else{
+                            paymentMethod = "";
+                        }
+                    }
+                });
+
+                    alertDialog.setPositiveButton("Ok(সঠিক)", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        /*finish();
+                        Intent intent = new Intent(DailyOrderActivity.this, UserUiContainerActivity.class);
+                        startActivity(intent);*/
+                            if(ckBox1.isChecked() || ckBox2.isChecked()){
+                                goToOrderSetup(paymentMethod);
+                            }
+                            else{
+
+                                Toast.makeText(DailyOrderActivity.this, "Payment method not selected!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+                alertDialog.setNegativeButton("Cancel(বাতিল করুন)", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { {dialog.dismiss(); }
+                    }
+                });
+
+                alertDialog.create();
+                alertDialog.show();
+
             }
         });
     }
+    private void getCartItemCount() {
+        cartReference = FirebaseDatabase.getInstance().getReference().child("CartList").child(userId);
 
-    private void goToOrderSetup() {
+        cartReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                cartListArrayList.clear();
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    CartList cartList = userSnapshot.getValue(CartList.class);
+
+                    cartListArrayList.add(cartList);
+                    Log.d(TAG, "onDataChange: "+ cartListArrayList.size());
+                    if(cartListArrayList.size()>=1){
+                        cartItemCount.setVisibility(View.VISIBLE);
+                        String cartCount = String.valueOf(cartListArrayList.size());
+                        cartItemCount.setText(cartCount);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void goToOrderSetup(String paymentMethod) {
         String uName = userName.getText().toString().trim();
         String uPhone = userPhone.getText().toString().trim();
         String uAddress1 = addressLine1.getText().toString().trim();
@@ -163,12 +266,12 @@ public class DailyOrderActivity extends AppCompatActivity {
         }
 
         storeOrderDetails(userId, uName, uPhone, uAddress1, uAddress2, uRoadNo, productTitle.getText().toString().trim(),
-                countAmount.getText().toString().trim(), totalAmount, productInfo.getCategory());
+                countAmount.getText().toString().trim(), totalAmount, productInfo.getCategory(), paymentMethod);
     }
 
     private void storeOrderDetails(final String userId, final String uName, final String uPhone, final String uAddress1,
                                    final String uAddress2, final String uRoadNo, final String productTitle, final String quantity,
-                                   final double totalAmount, final String category) {
+                                   final double totalAmount, final String category, final String paymentMethod) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat myTimeFormat = new SimpleDateFormat("hh:mm a", Locale.US);
         upTime = myTimeFormat.format(calendar.getTime());
@@ -179,14 +282,14 @@ public class DailyOrderActivity extends AppCompatActivity {
         String pushId = orderReference.push().getKey();
 
         DailyOrder dailyOrder = new DailyOrder(userId, pushId, uName, uPhone, uAddress1, uAddress2, uRoadNo,
-                productTitle, quantity, totalAmount, category, upTime, upDate);
+                productTitle, quantity, totalAmount, category, upTime, upDate, paymentMethod);
         orderReference.child(pushId).setValue(dailyOrder).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(DailyOrderActivity.this, "Your Order Submit Successfully !", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(DailyOrderActivity.this, OrderSuccessfulActivity.class);
+                Intent intent = new Intent(DailyOrderActivity.this, OrderCompleteActivity.class);
                 startActivity(intent);
-                finish();*/
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -380,5 +483,7 @@ public class DailyOrderActivity extends AppCompatActivity {
         countMinus = findViewById(R.id.minus);
         countAmount = findViewById(R.id.count);
         totalPrice = findViewById(R.id.totalPrice);
+        cartItemCount = findViewById(R.id.notificationCountTv);
+        notifyLay = findViewById(R.id.auctionNotificationAction);
     }
 }

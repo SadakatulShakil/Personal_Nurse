@@ -17,9 +17,11 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.astronist.personalnurse.Model.CartList;
 import com.astronist.personalnurse.Model.PrescriptionInfo;
 import com.astronist.personalnurse.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,8 +31,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -39,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -58,6 +64,10 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private ProgressBar progressBar;
     private String userId, addingTime, addingDate;
+    private DatabaseReference cartReference;
+    private ArrayList<CartList> cartListArrayList= new ArrayList<>();
+    private TextView cartItemCount;
+    private RelativeLayout notifyLay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +82,7 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
         Intent intent = getIntent();
         clicked = intent.getStringExtra("click");
 
+        getCartItemCount();
         previewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +94,14 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 StorePrescription(clicked);
+            }
+        });
+
+        notifyLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(HomeopathicAndAllopathicActivity.this, CartListActivity.class);
+                startActivity(intent1);
             }
         });
     }
@@ -189,10 +208,42 @@ public class HomeopathicAndAllopathicActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(imageUri));
     }
 
+    private void getCartItemCount() {
+
+        String userId = firebaseAuth.getCurrentUser().getUid();
+        cartReference = FirebaseDatabase.getInstance().getReference().child("CartList").child(userId);
+
+        cartReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                cartListArrayList.clear();
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    CartList cartList = userSnapshot.getValue(CartList.class);
+
+                    cartListArrayList.add(cartList);
+                    Log.d(TAG, "onDataChange: "+ cartListArrayList.size());
+                    if(cartListArrayList.size()>=1){
+                        cartItemCount.setVisibility(View.VISIBLE);
+                        String cartCount = String.valueOf(cartListArrayList.size());
+                        cartItemCount.setText(cartCount);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void inItView() {
 
         previewImage = findViewById(R.id.previewImage);
         proceedBtn = findViewById(R.id.proceedBtn);
         progressBar = findViewById(R.id.progressBar);
+        cartItemCount = findViewById(R.id.notificationCountTv);
+        notifyLay = findViewById(R.id.auctionNotificationAction);
     }
 }

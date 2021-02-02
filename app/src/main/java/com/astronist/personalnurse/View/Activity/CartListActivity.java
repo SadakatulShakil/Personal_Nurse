@@ -54,7 +54,7 @@ public class CartListActivity extends AppCompatActivity {
     private CartList cartList;
     private DailyOrder dailyOrder;
     private ExtendedFloatingActionButton placeOrderBtn;
-    private String monthName, userId, paymentMethod;
+    private String monthName, userId, paymentMethod, status ="pending";
     private DatabaseReference cartToOrderReference;
     private EditText userName, userPhone, addressLine1, addressLine2, userRoadNo;
     private CheckBox ckBox1, ckBox2;
@@ -162,7 +162,7 @@ public class CartListActivity extends AppCompatActivity {
             dailyOrder = new DailyOrder(cartListArrayList.get(j).getUserId(), cartListArrayList.get(j).getPushId(), cartListArrayList.get(j).getUserName(),
                     cartListArrayList.get(j).getUserPhone(), cartListArrayList.get(j).getUserAddress1(), cartListArrayList.get(j).getUserAddress2(), cartListArrayList.get(j).getUserRoadNo(),
                     cartListArrayList.get(j).getProductTitle(),cartListArrayList.get(j).getProductQuantity(), cartListArrayList.get(j).getTotalPrice(), cartListArrayList.get(j).getProductCategory(),
-                    cartListArrayList.get(j).getUpTime(), cartListArrayList.get(j).getUpdate(), paymentMethod);
+                    cartListArrayList.get(j).getUpTime(), cartListArrayList.get(j).getUpdate(), paymentMethod, status);
 
             cartToOrderReference = FirebaseDatabase.getInstance().getReference().child("Order");
 

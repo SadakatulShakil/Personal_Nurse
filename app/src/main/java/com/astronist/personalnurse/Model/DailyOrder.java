@@ -17,15 +17,15 @@ public class DailyOrder implements Serializable {
     private String upTime;
     private String update;
     private String paymentStatus;
+    private String status;
 
     public DailyOrder() {
     }
 
-    public DailyOrder(String userId, String pushId, String userName,
-                      String userPhone, String userAddress1, String userAddress2,
-                      String userRoadNo, String productTitle, String productQuantity,
-                      double totalPrice, String productCategory, String upTime,
-                      String update, String paymentStatus) {
+    public DailyOrder(String userId, String pushId, String userName, String userPhone,
+                      String userAddress1, String userAddress2, String userRoadNo,
+                      String productTitle, String productQuantity, double totalPrice,
+                      String productCategory, String upTime, String update, String paymentStatus, String status) {
         this.userId = userId;
         this.pushId = pushId;
         this.userName = userName;
@@ -40,6 +40,7 @@ public class DailyOrder implements Serializable {
         this.upTime = upTime;
         this.update = update;
         this.paymentStatus = paymentStatus;
+        this.status = status;
     }
 
     public String getUserId() {
@@ -154,6 +155,14 @@ public class DailyOrder implements Serializable {
         this.paymentStatus = paymentStatus;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "DailyOrder{" +
@@ -171,6 +180,7 @@ public class DailyOrder implements Serializable {
                 ", upTime='" + upTime + '\'' +
                 ", update='" + update + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

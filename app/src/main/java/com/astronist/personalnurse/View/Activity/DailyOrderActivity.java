@@ -49,7 +49,7 @@ public class DailyOrderActivity extends AppCompatActivity {
     private ImageView productImage;
     private ExtendedFloatingActionButton cartBtn, orderBtn;
     private ProductInfo productInfo;
-    private String userId, upTime, upDate, paymentMethod;
+    private String userId, upTime, upDate, paymentMethod, status ="pending";
     private DatabaseReference addressRef, cartReference, orderReference;
     private FirebaseAuth firebaseAuth;
     private int counter = 1, checkCart = 0;
@@ -282,7 +282,7 @@ public class DailyOrderActivity extends AppCompatActivity {
         String pushId = orderReference.push().getKey();
 
         DailyOrder dailyOrder = new DailyOrder(userId, pushId, uName, uPhone, uAddress1, uAddress2, uRoadNo,
-                productTitle, quantity, totalAmount, category, upTime, upDate, paymentMethod);
+                productTitle, quantity, totalAmount, category, upTime, upDate, paymentMethod, status);
         orderReference.child(pushId).setValue(dailyOrder).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

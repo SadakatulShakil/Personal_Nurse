@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
+                                        boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
+                                        Log.d("MyTAG", "onComplete: " + (isNew ? "new user" : "old user"));
                                         progressBar2.setVisibility(View.GONE);
                                         finish();
                                         Intent intent = new Intent(MainActivity.this, UserUiContainerActivity.class);
